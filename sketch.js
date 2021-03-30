@@ -3,9 +3,9 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
-const Render= Matter.Render;
+const Render = Matter.Render;
 const Constraint = Matter.Constraint;
-var Ball1,Roof1,Ball2,Ball3,Ball4,Ball5;
+
 
 function preload()
 {
@@ -20,17 +20,17 @@ function setup() {
 	world = engine.world;
 
 	//Create the Bodies Here.
-	Ball1=new Ball(200,440,40);
-    Roof1=new roof(400,100,600,20);
-	Ball2=new Ball(290,440,40);
-	Ball3=new Ball(370,440,40);
-	Ball4=new Ball(450,440,40);
-	Ball5=new Ball(530,440,40);
-	sling1= new rope(Ball1.body,Roof1.body,-50*2,0);
-    sling2= new rope(Ball2.body,Roof1.body,-25*2,0);
-    sling3= new rope(Ball3.body,Roof1.body,-0*2,0);
-    sling4= new rope(Ball4.body,Roof1.body,25*2,0);
-    sling5= new rope(Ball5.body,Roof1.body,50*2,0);
+	roof = new Roof(400,40,500,20)
+	bobobject1 = new Bob(200,470,100)
+	bobobject2 = new Bob(300,470,100)
+	bobobject3 = new Bob(400,470,100)
+	bobobject4 = new Bob(500,470,100)
+	bobobject5 = new Bob(600,470,100)
+  rope1= new Rope(bobobject1.body,roof.body,-100*2,0);
+  rope2= new Rope(bobobject2.body,roof.body,-50*2,0);
+  rope3= new Rope(bobobject3.body,roof.body,-0*2,0);
+  rope4= new Rope(bobobject4.body,roof.body,50*2,0);
+  rope5= new Rope(bobobject5.body,roof.body,100*2,0);
 
 	Engine.run(engine);
   
@@ -38,26 +38,28 @@ function setup() {
 
 
 function draw() {
+  background("yellow");
   rectMode(CENTER);
-  Engine.update(engine);
-  background(0);
-  text(mouseX+','+mouseY,20,35);
-  Ball1.display();
-  Ball2.display();
-  Ball3.display();
-  Ball4.display();
-  Ball5.display();
-  Roof1.display();
-  sling1.display();
-  sling2.display();
-  sling3.display();
-  sling4.display();
-  sling5.display();
+  Engine.update(engine)
   
+  roof.display();
+  bobobject1.display();
+  bobobject2.display()
+  bobobject3.display()
+  bobobject4.display()
+  bobobject5.display()
+  rope1.display()
+  rope2.display()
+  rope3.display()
+  rope4.display()
+  rope5.display()
+
+  keyPressed();
   drawSprites();
  
 }
-
-
-
+function keyPressed() { 
+	if (keyCode === UP_ARROW) 
+	{ Matter.Body.applyForce(bobobject1.body,bobobject1.body.position,{x:-100,y:-100}); } 
+} 
 
